@@ -5,69 +5,67 @@ Flash
 
 .. php:class:: FlashHelper(View $view, array $config = [])
 
-FlashHelper provides a way to render flash messages that were set in
-``$_SESSION`` by :doc:`FlashComponent </controllers/components/flash>`.
-:doc:`FlashComponent </controllers/components/flash>` and FlashHelper
-primarily use elements to render flash messages.  Flash elements are found under
-the **src/Template/Element/Flash** directory.  You'll notice that CakePHP's App
-template comes with two flash elements: **success.ctp** and **error.ctp**.
+FlashHelper bieten eine Möglichkeit um Flashnachrichten anzuzeigen die gesetzt wurden in
+``$_SESSION`` von :doc:`FlashComponent </controllers/components/flash>`.
+:doc:`FlashComponent </controllers/components/flash>` und FlashHelper
+benutzen in erster Linie Elemente um Flash Nachrichten zu erstellen. Flash Elemente finden Sie unter
+dem Verzeichnis **src/Template/Element/Flash** .  Sie werden feststellen das CakePHP's Apps
+Vorlagen mit zwei Flash Elementen kommt: **success.ctp** und **error.ctp**.
 
-Rendering Flash Messages
+Anzeigen von Flash Nachrichten
 ========================
 
-To render a flash message, you can simply use FlashHelper's ``render()``
-method::
+Um eine Flash Nachricht anzuzeigen, können Sie einfach FlashHelper's ``render()``
+methode benutzen::
 
     <?= $this->Flash->render() ?>
 
-By default, CakePHP uses a "flash" key for flash messages in a session.  But, if
-you've specified a key when setting the flash message in
-:doc:`FlashComponent </controllers/components/flash>`, you can specify which
-flash key to render::
+Als Standart, benutzt CakePHP eine "flash" Taste für Flash Nachrichten in einer Session. Aber, wenn
+Sie bei der Einstellung der Flash Nachricht in
+:doc:`FlashComponent </controllers/components/flash>`, eine Taste angegeben haben, können Sie jedoch festlegen, welche Flash-Taste zu rendern ist::
 
     <?= $this->Flash->render('other') ?>
 
-You can also override any of the options that were set in FlashComponent::
+Sie können auch alle Optionen überschreiben die in der Flash Componente gesetzt wurden::
 
-    // In your Controller
-    $this->Flash->set('The user has been saved.', [
-        'element' => 'success'
+    // In ihrem Controller
+    $this->Flash->set('Der Benutzer wurde gespeichert.', [
+        'element' => 'erfolgreich'
     ]);
 
-    // In your View: Will use great_success.ctp instead of succcess.ctp
+    // In ihrer View: Wird great_success.ctp benutzt anstatt succcess.ctp
     <?= $this->Flash->render('flash', [
         'element' => 'great_success'
     ]);
 
 .. note::
 
-    When building custom flash message templates, be sure to properly HTML
-    encode any user data. CakePHP won't escape flash message parameters for you.
+    Wenn Sie eigene Flash Nachrichten erstellen, stellen Sie sicher das HTML
+    alle Benutzerdaten kodiert. CakePHP werden Flash-Nachrichtenparameter nicht entgehen.
 
 .. versionadded:: 3.1
 
-    The :doc:`FlashComponent </controllers/components/flash>` now
-    stacks messages. If you set multiple flash messages, when you call
-    ``render()``, each message will be rendered in its own elements, in the
-    order they were set.
+    Die :doc:`FlashComponent </controllers/components/flash>` stapelt jetzt Nachrichten.
+    Wenn Sie mehrere Flash Nachrichten erstellen, beim benutzten von
+    ``render()``, jede Nachricht wird in ihrem eigenen Element gerendert in der Sie gesetzt wurde.
 
-For more information about the available array options, please refer to the
-:doc:`FlashComponent </controllers/components/flash>` section.
+Weitere Informationen zu den verfügbaren Arrayoptionen finden Sie im
+:doc:`FlashComponent </controllers/components/flash>` Bereich.
 
-Routing Prefix and Flash Messages
+Routing Prefix und Flash Messages
 =================================
 
 .. versionadded:: 3.0.1
 
-If you have a Routing prefix configured, you can now have your Flash elements
-stored in **src/Template/{Prefix}/Element/Flash**. This way, you can have
-specific messages layouts for each part of your application. For instance, using
-different layouts for your front-end and admin section.
+Wenn Sie ein Routing-Präfix konfiguriert haben, können Sie jetzt ihre Flash Elemente in 
+**src/Template/{Prefix}/Element/Flash** ablegen. Auf diese Weise können Sie mehrere
+Spezifische Nachrichten-Layouts für jeden Teil Ihrer Anwendung haben. Zum Beispiel mit
+Verschiedene Layouts für Ihren Front-End und Admin-Bereich.
 
-Flash Messages and Themes
+Flash Nachrichten und Themes
 =========================
 
-The FlashHelper uses normal elements to render the messages and will therefore
-obey any theme you might have specified. So when your theme has a
-**src/Template/Element/Flash/error.ctp** file it will be used, just as with any
-Elements and Views.
+Der FlashHelper benutzt normale Elemente um Nachrichten anzuzeigen und wird daher
+jedem Theme folgen das Sie angegeben haben. Also wenn ihr Theme eine 
+**src/Template/Element/Flash/error.ctp** Datei beinhaltet wird Sie benutzt, so wie
+mit jedem Element und jeder Ansicht.
